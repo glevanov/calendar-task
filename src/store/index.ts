@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { createVuexStore } from 'vuex-simple';
 
-Vue.use(Vuex)
+import { Tasks } from "@/store/tasks";
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+Vue.use(Vuex);
+
+const instance = new Tasks([]);
+
+export default createVuexStore(instance, {
+  strict: false,
+  modules: {},
+  plugins: []
+});
