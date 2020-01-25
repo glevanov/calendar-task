@@ -28,11 +28,20 @@ export default class Calendar extends VueComponent<Props> {
   private weeksCount:number = Math.ceil((this.daysInMonth + this.monthStart) / this.daysInWeek);
   private year:string = this.now.format('YYYY');
 
+  private selected:string = this.now.date().toString();
+
   private switchStartToMonday(index:number) {
     return index === 0
       ? this.daysInWeek - 1
       : index - 1;
   }
+
+  private onDateClick(day:string) {
+    if (day === '') {
+      return;
+    }
+    this.selected = day;
+}
 
   private getMonth() {
     const fillWeeks = (index:number) => {
@@ -67,7 +76,14 @@ export default class Calendar extends VueComponent<Props> {
     const month = monthData.map((week, index) =>
       <tr key={index}>
         { week.map((day, index) =>
-          <td key={index} class={styles.cell}>
+          <td
+            key={index}
+            class={`
+              ${styles.cell}
+              ${day === this.selected.toString() ? styles.selected : ''}
+            `}
+            onclick={this.onDateClick.bind(this, day)}
+          >
             {day}
           </td>) }
       </tr>);

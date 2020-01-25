@@ -24,6 +24,14 @@
     padding: 10px;
 
     text-align: center;
+
+    border-radius: 50%;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.cell:not(.day) {
+    cursor: pointer;
 }
 
 .day {
@@ -32,9 +40,11 @@
 }
 
 .selected {
-    background-color: #0291ee;
+    color: #ffffff;
+    background-color: #52c1f4;
+
 }
 
 .tasks {
-    color: #ee0290;
+    color: #f452c1;
 }
