@@ -1,38 +1,29 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { createVuexStore } from 'vuex-simple';
+import {createVuexStore, Mutation, State} from 'vuex-simple';
 import { Task } from '@/interfaces/interfaces'
 
-import { Tasks } from "@/store/tasks";
+import { sampleTasks } from "@/store/sampleTasks";
 
 Vue.use(Vuex);
 
-const sampleTasks:Array<Task> = [
-  {
-    date: 3,
-    text: 'Погладить кота',
-    done: true
-  },
-  {
-    date: 8,
-    text: 'Не тупить целый день на Лепре',
-    done: true
-  },
-  {
-    date: 15,
-    text: 'Купить хлеба',
-    done: false
-  },
-  {
-    date: 29,
-    text: 'Позвонить Геннадию',
-    done: false
+export class Store {
+  @State()
+  public tasks: Array<Task>;
+
+  constructor(tasks: Array<Task>) {
+    this.tasks = tasks;
   }
-];
 
-const instance = new Tasks(sampleTasks);
+  @Mutation()
+  public addTask(task: Task) {
+    this.tasks.push(task);
+  }
+}
 
-export default createVuexStore(instance, {
+const store = new Store(sampleTasks);
+
+export default createVuexStore(store, {
   strict: false,
   modules: {},
   plugins: []

@@ -5,6 +5,7 @@ import 'dayjs/locale/ru';
 import { useStore } from 'vuex-simple';
 
 import styles from './Calendar.css?module';
+import { Store } from "@/store/index";
 
 dayjs.locale('ru');
 
@@ -12,7 +13,7 @@ interface Props {
 }
 @Component
 export default class Calendar extends VueComponent<Props> {
-  public store = useStore(this.$store);
+  public store:Store = useStore(this.$store);
 
   private now = dayjs();
   private daysInWeek:number = 7;
