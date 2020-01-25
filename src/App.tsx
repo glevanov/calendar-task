@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator';
-import Calendar from '@/components/Calendar';
+import Calendar from '@/components/Calendar/Calendar';
 
 import styles from './App.css?module';
 

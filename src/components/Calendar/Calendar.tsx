@@ -32,8 +32,6 @@ export default class Calendar extends VueComponent<Props> {
   private weeksCount:number = Math.ceil((this.daysInMonth + this.monthStart) / this.daysInWeek);
   private year:string = this.now.format('YYYY');
 
-  private selected:string = this.now.date().toString();
-
   private switchStartToMonday(index:number) {
     return index === 0
       ? this.daysInWeek - 1
@@ -44,7 +42,7 @@ export default class Calendar extends VueComponent<Props> {
     if (day === '') {
       return;
     }
-    this.selected = day;
+    this.store.switchDay(day);
   }
 
   private getMonth() {
@@ -76,9 +74,11 @@ export default class Calendar extends VueComponent<Props> {
   }
 
   private get busyDays() {
-    const acc = new Set();
-    this.store.tasks.forEach(task => acc.add(task.date));
-    return acc;
+    return this.store.busyDays;
+  }
+
+  private get selected() {
+    return this.store.selectedDay;
   }
 
   render() {
