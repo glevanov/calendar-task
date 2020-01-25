@@ -3,7 +3,7 @@ import { VueComponent } from '@/shims-vue';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 
-import styles from './calendar.css?module';
+import styles from './Calendar.css?module';
 
 dayjs.locale('ru');
 
@@ -67,22 +67,24 @@ export default class Calendar extends VueComponent<Props> {
     const month = monthData.map((week, index) =>
       <tr key={index}>
         { week.map((day, index) =>
-          <td key={index}>
+          <td key={index} class={styles.cell}>
             {day}
           </td>) }
       </tr>);
 
     return (
-      <section>
-        <table>
+      <section class={styles.wrapper}>
+        <table class={styles.table}>
           <thead>
             <tr>
-              <th colspan={this.daysInWeek}>
+              <th colspan={this.daysInWeek} class={styles.heading}>
                 { this.monthName } {this.year}
               </th>
             </tr>
             <tr>
-              { this.weekDaysNames.map(day => <th>{day}</th>) }
+              { this.weekDaysNames.map(day =>
+                <th key={day} class={`${styles.day} ${styles.cell}`}>{day}</th>)
+              }
             </tr>
           </thead>
           <tbody>
