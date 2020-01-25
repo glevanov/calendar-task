@@ -45,6 +45,6 @@
 
 }
 
-.tasks {
+.tasks:not(.selected) {
     color: #f452c1;
 }

@@ -2,6 +2,7 @@ import { Component } from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
+import { useStore } from 'vuex-simple';
 
 import styles from './Calendar.css?module';
 
@@ -11,6 +12,8 @@ interface Props {
 }
 @Component
 export default class Calendar extends VueComponent<Props> {
+  public store = useStore(this.$store);
+
   private now = dayjs();
   private daysInWeek:number = 7;
   private daysInMonth:number = this.now.daysInMonth();
@@ -41,7 +44,7 @@ export default class Calendar extends VueComponent<Props> {
       return;
     }
     this.selected = day;
-}
+  }
 
   private getMonth() {
     const fillWeeks = (index:number) => {
@@ -71,6 +74,12 @@ export default class Calendar extends VueComponent<Props> {
       .map((day, index) => fillWeeks(index));
   }
 
+  private get busyDays() {
+    const acc = new Set();
+    this.store.tasks.forEach(task => acc.add(task.date));
+    return acc;
+  }
+
   render() {
     const monthData = this.getMonth();
     const month = monthData.map((week, index) =>
@@ -81,6 +90,7 @@ export default class Calendar extends VueComponent<Props> {
             class={`
               ${styles.cell}
               ${day === this.selected.toString() ? styles.selected : ''}
+              ${this.busyDays.has(parseInt(day)) ? styles.tasks : ''}
             `}
             onclick={this.onDateClick.bind(this, day)}
           >
