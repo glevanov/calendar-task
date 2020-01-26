@@ -36,7 +36,7 @@ export default class TaskList extends VueComponent<Props> {
   render() {
     return (
       <section class={styles.wrapper}>
-        <h2>События</h2>
+        <h2 class={styles.heading}>События</h2>
 
         <ul class={styles.list}>
           {this.tasks.map(task =>
@@ -53,9 +53,10 @@ export default class TaskList extends VueComponent<Props> {
           )}
         </ul>
 
-        <form onsubmit={this.onTaskAdd}>
+        <form class={styles.form} onsubmit={this.onTaskAdd}>
           <input
             type="text"
+            class={styles.submit}
             value={this.newTask}
             oninput={this.onInput}
           />
