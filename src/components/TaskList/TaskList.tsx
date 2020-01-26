@@ -34,23 +34,31 @@ export default class TaskList extends VueComponent<Props> {
   }
 
   render() {
+    const tasks = this.tasks.map(task =>
+      <li class={styles.item}>
+        <label class={styles.group}>
+          <input
+            type="checkbox"
+            checked={task.done}
+            class={styles.input}
+            onchange={this.onCheck.bind(this, task.id)}
+          />
+          <span class={styles.checkbox} />
+          <span>{task.text}</span>
+        </label>
+      </li>
+    );
+
+    const noTasks = <li class={styles.item}>
+      <p class={styles.vacant}>На сегодня ничего не запланировано.</p>
+    </li>;
+
     return (
       <section class={styles.wrapper}>
         <h2 class={styles.heading}>События</h2>
 
         <ul class={styles.list}>
-          {this.tasks.map(task =>
-            <li class={styles.item}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={task.done}
-                  onchange={this.onCheck.bind(this, task.id)}
-                />
-                <span>{task.text}</span>
-              </label>
-            </li>
-          )}
+          {this.tasks.length ? tasks : noTasks}
         </ul>
 
         <form class={styles.form} onsubmit={this.onTaskAdd}>
