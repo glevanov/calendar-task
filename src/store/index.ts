@@ -14,8 +14,8 @@ export class Store {
   public tasks:Array<Task>;
   public selectedDay:string;
 
-  constructor(tasks: Array<Task>) {
-    this.tasks = tasks;
+  constructor(tasks?: Array<Task>) {
+    this.tasks = tasks || [];
     this.selectedDay = dayjs().date().toString();
   }
 
