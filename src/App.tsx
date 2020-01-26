@@ -8,9 +8,12 @@ import styles from './App.css?module';
 export default class App extends Vue {
   render() {
     return (
-      <div id="app" class={styles.app}>
+      <div
+        id="app"
+        class={`${styles.app} ${styles.wrapper}`}
+      >
         <Calendar />
-        <TaskList />
+        <TaskList class={styles.tasks} />
       </div>
     )
   }
