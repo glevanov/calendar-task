@@ -9,7 +9,7 @@ export const sampleTasks:Array<Task> = [
   },
   {
     date: 8,
-    text: 'Не тупить целый день на Лепре',
+    text: 'Провести день продуктивно',
     done: true,
     id: '-pAqU1AIyfDDmdp_NqSpB'
   },
@@ -27,7 +27,7 @@ export const sampleTasks:Array<Task> = [
   },
   {
     date: 26,
-    text: 'Не Позвонить Геннадию',
+    text: 'Задание достаточной длины, чтобы проверить не уедет ли вёрстка полностью. Пожалуй, стоит добавить ещё букв. Теперь всё.',
     done: true,
     id: 'dMR9SquBAWvCaduQRXwGQ'
   },
