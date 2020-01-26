@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {createVuexStore, Mutation, State} from 'vuex-simple';
+import { createVuexStore, Mutation, State } from 'vuex-simple';
 import dayjs from 'dayjs';
-import { Task } from '@/interfaces/interfaces'
+import nanoid from 'nanoid';
+import { Task } from '@/interfaces/interfaces';
 
 import { sampleTasks } from "@/store/sampleTasks";
 
@@ -19,8 +20,13 @@ export class Store {
   }
 
   @Mutation()
-  public addTask(task: Task) {
-    this.tasks.push(task);
+  public addTask(text:string) {
+    this.tasks.push({
+      date: parseInt(this.selectedDay),
+      text,
+      done: false,
+      id: nanoid()
+    });
   }
 
   @Mutation()
