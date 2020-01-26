@@ -2,15 +2,14 @@ import { Component } from 'vue-property-decorator';
 import { VueComponent } from '@/shims-vue';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
+import { Store } from "@/store/index";
 import { useStore } from 'vuex-simple';
 
 import styles from './Calendar.css?module';
-import { Store } from "@/store/index";
 
 dayjs.locale('ru');
 
-interface Props {
-}
+interface Props {}
 @Component
 export default class Calendar extends VueComponent<Props> {
   public store:Store = useStore(this.$store);

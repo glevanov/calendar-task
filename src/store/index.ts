@@ -30,6 +30,14 @@ export class Store {
   }
 
   @Mutation()
+  public toggleTask(id:string) {
+    const task = this.tasks.find(task => task.id === id);
+    if (task !== undefined) {
+      task.done = !task.done;
+    }
+  }
+
+  @Mutation()
   public switchDay(day:string) {
     this.selectedDay = day;
   }
@@ -38,6 +46,10 @@ export class Store {
     const acc = new Set();
     this.tasks.forEach(task => acc.add(task.date));
     return acc;
+  }
+
+  get dayTasks() {
+    return this.tasks.filter(task => task.date.toString() === this.selectedDay);
   }
 }
 

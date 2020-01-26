@@ -1,5 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Calendar from '@/components/Calendar/Calendar';
+import TaskList from "@/components/TaskList/TaskList";
 
 import styles from './App.css?module';
 
@@ -9,6 +10,7 @@ export default class App extends Vue {
     return (
       <div id="app" class={styles.app}>
         <Calendar />
+        <TaskList />
       </div>
     )
   }
